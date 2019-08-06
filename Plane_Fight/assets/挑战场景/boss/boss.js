@@ -23,6 +23,17 @@ cc.Class({
             element.getComponent("Part").init(this);
             // cc.log(element);
         });
+        this.move();
+    },
+    move(){
+        let pList = [
+            cc.v2(500,-500),
+            cc.v2(-300,0),
+            cc.v2(0,-cc.winSize.height/2+180)
+        ]
+        this.node.runAction(
+            cc.bezierBy(5,pList),
+        )
     },
     init(data){
         this.hp = data.hp;
@@ -89,7 +100,7 @@ cc.Class({
              leafNode[i].getComponent(cc.RigidBody).type = cc.RigidBodyType.Dynamic;
         };
         this.unschedule(this.shoot);
-        // this.node.destroy()
+        this.HPProgressBar.node.setPosition(-900,0)
     },
     // 通过闭包加递归。获取一个节点的叶节点
     getLeafNode(root){

@@ -20,7 +20,7 @@ cc.vv.TOTAL_LEVEL = 16;
 cc.vv.CUREENT_PLANE_TYPE = 3;
 // 当前点击的关卡
 cc.vv.CURENT_SELECT_LEVEL = 1;
-// 导弹打 的敌机
+// 导弹打的敌机
 cc.vv.BEKILLENEMY = null;
 //游戏得分
 cc.vv.score = 0;
@@ -314,7 +314,7 @@ cc.vv.BOSS_LIST = {
         // boss预制件
         "prefab":"boss_01",
         // 发射模式
-        'shootPolicy':"5",
+        'shootPolicy':"6",
         // boss血量
         "hp":10000,
         // boss分值
@@ -511,5 +511,11 @@ cc.vv.BULLET_LIST = {
             offset:[[-25,25],[0,-45],[25,25]],
             bulletList:["eb_1","eb_1","eb_1","eb_1","eb_1",],
             rotationList:[0,0,0]  
+        },
+        "6":{
+            total:7,
+            offset:[[-120,-125],[-100,-125],[-80,-125],[0,-125],[80,-125],[100,-125],[120,-125]],
+            bulletList:["hb_2","hb_2","hb_2","hb_2","hb_2","hb_2","hb_2",],
+            rotationList:[-10,0,10,0,-10,0,10]  
         }
     }

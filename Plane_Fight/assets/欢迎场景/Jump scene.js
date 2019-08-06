@@ -4,13 +4,17 @@ cc.Class({
 
     properties: {
        myPlane:cc.Sprite,
-       bgm:cc.AudioClip,
+       bgm:{
+           default:null,
+           type:cc.AudioClip,
+       }
     },
 
 
     // onLoad () {},
 
     start () {
+        console.log(this.node.name);
         cc.vv.dj.playBgm(cc.vv.res["welcome"],true);
 
     },
@@ -21,6 +25,8 @@ cc.Class({
 
     },
    
+
+    
     update (dt) {
         this.myPlane.spriteFrame = cc.vv.res['plane_' + cc.vv.CUREENT_PLANE_TYPE]
     },

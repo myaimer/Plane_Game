@@ -54,7 +54,7 @@ cc.Class({
             this.par.onDizuoClick(this);
         }
 
-        let canvas =cc.find("Canvas").getComponent("NewScript");
+        // let canvas =cc.find("Canvas").getComponent("NewScript");
         // cc.log(canvas)
         // if(this.lock.node.active){
         //     canvas.button.active = true;

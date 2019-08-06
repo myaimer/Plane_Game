@@ -14,13 +14,14 @@ cc.Class({
     // onLoad () {},
 
     start () {
+        console.log(this.node.name)
         //创建子弹的对象池
         this.hbPool = new cc.NodePool('Bullet');
         // 攻击导弹的对象池
-        // this.DFPool = new cc.NodePool('DF');
+        this.DFPool = new cc.NodePool('DF');
         this.shootPolicy = 1;
         //发射子弹的计时器
-        this.schedule(this["shoot"+this.shootPolicy],0.2);
+        this.schedule(this["shoot"+this.shootPolicy],0.2,this);
         this.heroHP = 100;
         this.life = 3
     },
@@ -84,7 +85,8 @@ cc.Class({
         //     let DF = this.DFPool.get();
         //     if(!DF){
         //         DF = cc.instantiate(this.daoDan);
-        //         DF.getComponent("DF").init(cc.vv.BEKILLENEMY,this.DFPool)
+        //         // DF.getComponent("DF").init(cc.vv.BEKILLENEMY,this.DFPool)
+        //         console.log(DF.getComponent("DF"))
         //     }
         //     DF.rotation = 0;
         //     DF.setPosition(this.node.getPosition());

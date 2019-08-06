@@ -14,7 +14,7 @@
       false,
       false,
       true,
-      false,
+      null,
       true,
       true,
       true,
@@ -81,7 +81,7 @@
     "youjun",
     "dijun",
     "zidan",
-    "diju_bullet",
+    "dijun_bullet",
     "prop",
     "barrier",
     "Boss"

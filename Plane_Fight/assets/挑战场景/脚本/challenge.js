@@ -21,6 +21,7 @@ cc.Class({
         loadProgressBar:cc.ProgressBar,
         // 战斗层
         battle:cc.Node,
+        bossWarning:cc.Node,
     },
 
 
@@ -55,24 +56,34 @@ cc.Class({
         },this)
     },
     start () {
-        //获取所有敌机对象池
-        this.enemyPool  = [];
-        for (let i = 0; i < this.enemyList.length; i++) {
-            this.enemyPool[i]  = new cc.NodePool("diji");  
-        }
+        this.createEnemyPool();
         // 启动敌机生成的计时器
-        this.schedule(this.createEnemy,1);
+        this.schedule(this.createEnemy,1,this);
         // 当前攻击目标
         this.curAttackTarget = null;
-        setTimeout(this.createBoss.bind(this),10000)
+        // setTimeout(this.bossCome.bind(this),10000);
+    },
+    bossCome(){
+        this.bossWarning.active = true;
+        setTimeout(function(){
+            this.bossWarning.active = false;
+        }.bind(this),2000);
+        this.createBoss();
     },
     createBoss(){
         this.unschedule(this.createEnemy);
         let bossData  = cc.vv.BOSS_LIST[this.bossData]
         let boss = cc.instantiate(cc.vv.res[bossData["prefab"]]);
         boss.getComponent("boss").init(bossData);
-        boss.setPosition(100,100);
-        this.battle.addChild(boss)
+        boss.setPosition(0,cc.winSize.height/2);
+        this.battle.addChild(boss);
+    },
+    createEnemyPool(){
+        //获取所有敌机对象池
+        this.enemyPool  = [];
+        for (let i = 0; i < this.enemyList.length; i++) {
+            this.enemyPool[i]  = new cc.NodePool("diji");  
+        }
     },
     createEnemy(){
         // 随机获取敌机数据
@@ -81,8 +92,9 @@ cc.Class({
         // 生成对应的敌机
         let id = enemyData["id"];   
         // 给敌机匹配自己对应的对象池
-        let pool = this.enemyPool[index]
-        this["createEnemy_" +parseInt(id.split("ep_")[1])](enemyData,pool);
+        let pool = this.enemyPool[index];
+        let num = parseInt(id.split("ep_")[1])
+        this["createEnemy_" +num](enemyData,pool);
     },
     // 获取敌机节点
     getEnemyNode(pool,data){
